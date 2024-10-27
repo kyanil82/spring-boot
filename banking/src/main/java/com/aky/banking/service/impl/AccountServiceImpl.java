@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountServiceImpl implements AccountService {
 
+
     private AccountRepository accountRepository;
 
     public AccountServiceImpl(AccountRepository accountRepository){
@@ -23,8 +24,18 @@ public class AccountServiceImpl implements AccountService {
         return  AccountMapper.mapToAcountDto(savedAccount);
     }
 
+    @Override
     public AccountDto getAccountById(Long Id) {
         Account account = accountRepository.findById(Id).orElseThrow(()-> new RuntimeException("Account does not exist"));
+        return  AccountMapper.mapToAcountDto(account);
+    }
+
+    @Override
+    public AccountDto deposit(Long Id, double deposit) {
+        Account account = accountRepository.findById(Id).orElseThrow(()-> new RuntimeException("Account does not exist"));
+        double total = account.getBalance() + deposit;
+        account.setBalance(total);
+        Account savedAccount = accountRepository.save(account);
         return  AccountMapper.mapToAcountDto(account);
     }
 }
