@@ -17,6 +17,8 @@ public class AppUserServiceImpl {
     public AppUserServiceImpl(AppUserRepository appUser) {
         this.appUser = appUser;
     }
+
+    // initialize app user table when application starts
     @PostConstruct
     public void initUser(){
 

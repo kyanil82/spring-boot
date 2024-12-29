@@ -19,6 +19,8 @@ public class ClaimItemDto {
 
     private String userName;
 
+
+
     public String getUserid() {
         return userid;
     }
@@ -65,7 +67,13 @@ public class ClaimItemDto {
     public ClaimItemDto() {
     }
 
-
+    public ClaimItemDto(String itemName, int quantity, String place, String userid, String userName) {
+        this.itemName = itemName;
+        this.quantity = quantity;
+        this.place = place;
+        this.userid = userid;
+        this.userName = userName;
+    }
 
 
 
