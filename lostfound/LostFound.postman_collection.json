@@ -1,0 +1,145 @@
+{
+	"info": {
+		"_postman_id": "57766676-047c-4034-8caa-0ab530aaff86",
+		"name": "LostFound",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1871764"
+	},
+	"item": [
+		{
+			"name": "ClaimItem",
+			"item": [
+				{
+					"name": "claimItems",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\n    {\n        \"itemName\": \"Laptop\",\n        \"quantity\": 1,\n        \"place\": \"Taxi\"\n        \n    },\n    {\n        \"itemName\": \"Headphones\",\n        \"quantity\": 2,\n        \"place\": \"Railway station\"\n    },\n    {\n        \"itemName\": \"Jewels\",\n        \"quantity\": 4,\n        \"place\": \"Airport\"\n    },\n    {\n        \"itemName\": \"Laptop\",\n        \"quantity\": 1,\n        \"place\": \"Airport\"\n    }\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/claimItem/claim/1002",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"claimItem",
+								"claim",
+								"1002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "viewAllClaim",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/claimItem/viewAllClaim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"claimItem",
+								"viewAllClaim"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "uploadFile",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/anilyadav/Downloads/LostFound.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/lostItem/uploadRecord",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostItem",
+						"uploadRecord"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewAllLostItems",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lostItem/viewAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostItem",
+						"viewAll"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ViewAllLostItemsPaging",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/lostItem/viewAllWithPagination?page=3&size=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lostItem",
+						"viewAllWithPagination"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "3"
+						},
+						{
+							"key": "size",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
