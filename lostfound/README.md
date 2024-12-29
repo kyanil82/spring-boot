@@ -18,7 +18,7 @@ db name is application and APP_USER table is auto populated on application start
 
 Tested with postman
 
-1) http://localhost:8080/lostItem/uploadRecord  (Post Method , body as form type with key as file an choose type as file and attach pdf.)
+1) http://localhost:8080/lostItem/uploadRecord  (Post Method , body as form type with key as file an choose type as file and attach pdf. Sample pdf attached in project resources folder to test)
 2) http://localhost:8080/lostItem/viewAll (Get Method, shows all the pdf loaded lost items)
 3) http://localhost:8080/claimItem/claim/{userId} (Post Method to claim items with existing userId for eg. 1001 or 1002, user must exist in AppUser table)
 4) http://localhost:8080/claimItem/viewAllClaim (Get Method to view all the claims)
