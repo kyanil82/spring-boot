@@ -58,6 +58,26 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "viewAllClaimByUserId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/claimItem/viewAllClaim",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"claimItem",
+								"viewAllClaim"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
