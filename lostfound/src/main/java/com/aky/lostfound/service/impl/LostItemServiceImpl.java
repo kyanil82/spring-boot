@@ -6,6 +6,7 @@ import com.aky.lostfound.service.LostItemService;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -108,6 +109,14 @@ public class LostItemServiceImpl implements LostItemService {
     @Override
     public List<LostItem> viewAll() {
         return  lostItemRepository.findAll();
+    }
+
+    @Override
+    public List<LostItem> viewAllWithPagination(Pageable pageable) {
+        List<LostItem> li = new ArrayList<>();
+        lostItemRepository.findAll(pageable).forEach(li::add);
+        return li;
+
     }
 
 

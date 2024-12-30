@@ -3,6 +3,8 @@ package com.aky.lostfound.controller;
 import com.aky.lostfound.entity.LostItem;
 import com.aky.lostfound.service.LostItemService;
 import com.aky.lostfound.service.impl.LostItemServiceImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +36,12 @@ public class LostItemController {
     public ResponseEntity<List<LostItem>> viewAll()  {
 
         return new ResponseEntity<List<LostItem>>(lostItemService.viewAll(), HttpStatus.OK);
+    }
+
+    @GetMapping("/viewAllWithPagination")
+    public ResponseEntity<List<LostItem>> viewAllWithPagination(@RequestParam(required=true) int page, @RequestParam(required=true) int size)  {
+        Pageable pageable = PageRequest.of(page,size);
+        return new ResponseEntity<List<LostItem>>(lostItemService.viewAllWithPagination(pageable), HttpStatus.OK);
     }
 
 }
