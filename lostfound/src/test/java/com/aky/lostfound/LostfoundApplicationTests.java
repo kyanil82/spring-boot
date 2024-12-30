@@ -47,6 +47,14 @@ class LostfoundApplicationTests {
 	}
 
 	@Test
+	public void viewAllClaimByUserIdTest(){
+		when(claimItemRepository.findAllByUserId("1002")).thenReturn(Stream.of
+				(new ClaimItem("Laptop",1,"Taxi","1001"),
+						new ClaimItem("Headphones",2,"Railway station","1001"),
+						new ClaimItem("Jewels",4,"Airport","1001")).collect(Collectors.toList()));
+		assertEquals(3,claimItemservice.viewAllClaimByUserId("1002").size());
+	}
+	@Test
 	public void claimByUserIdTest(){
 
 		List<ClaimItem> claimItems = new ArrayList<>();
