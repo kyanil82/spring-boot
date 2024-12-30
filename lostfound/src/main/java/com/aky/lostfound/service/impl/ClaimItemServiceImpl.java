@@ -10,10 +10,7 @@ import com.aky.lostfound.service.ClaimItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class ClaimItemServiceImpl implements ClaimItemService {
@@ -42,9 +39,6 @@ public class ClaimItemServiceImpl implements ClaimItemService {
         }catch(Exception e){
             return e.getMessage();
         }
-
-
-
 
     }
 
@@ -75,4 +69,35 @@ public class ClaimItemServiceImpl implements ClaimItemService {
          return claimItemsDto;
 
     }
+
+    @Override
+    public List<ClaimItemDto> viewAllClaimByUserId(String userid) {
+        List<ClaimItemDto> claimItemsDto = new ArrayList<>();
+        try{
+            appUserRepository.findById(userid).orElseThrow(()-> new RuntimeException("User does not exist"));
+            Optional<AppUser> appUser = appUserRepository.findById(userid);
+
+            List<ClaimItem> claimItems = claimItemRepository.findAllByUserId(userid);
+
+
+            for(ClaimItem claimItem : claimItems){
+                ClaimItemDto claimtemDto = new ClaimItemDto();
+                claimtemDto.setItemName(claimItem.getItemName());
+                claimtemDto.setQuantity(claimItem.getQuantity());
+                claimtemDto.setPlace(claimItem.getPlace());
+                claimtemDto.setUserid(claimItem.getUserId());
+                claimtemDto.setUserName(appUser
+                        .map(AppUser::getUserName)  // Use map to extract the name from appUser
+                        .orElse("Unknown"));
+                claimItemsDto.add(claimtemDto);
+            }
+
+        }catch(Exception e){
+             e.getMessage();
+        }
+
+        return claimItemsDto;
+    }
+
+
 }

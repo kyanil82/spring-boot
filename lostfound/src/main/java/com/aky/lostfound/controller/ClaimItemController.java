@@ -22,14 +22,23 @@ public class ClaimItemController {
     @PostMapping("/claim/{userid}")
     public ResponseEntity<String> claimById(@PathVariable String userid, @RequestBody List<ClaimItemDto> claimItemsDto){
 
-        return new ResponseEntity<>(claimItemService.claimByUserId(userid,claimItemsDto), HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(claimItemService.claimByUserId(userid,claimItemsDto), HttpStatus.CREATED);
     }
 
     @GetMapping("/viewAllClaim")
     public ResponseEntity<List<ClaimItemDto>> viewClaim(){
 
 
-        return new ResponseEntity<List<ClaimItemDto>>(claimItemService.viewAllClaim(), HttpStatus.ACCEPTED);
+        return new ResponseEntity<List<ClaimItemDto>>(claimItemService.viewAllClaim(), HttpStatus.OK);
     }
+
+    @GetMapping("/viewAllClaim/{userid}")
+    public ResponseEntity<List<ClaimItemDto>> viewAllClaimByUserId(@PathVariable String userid){
+
+
+        return new ResponseEntity<List<ClaimItemDto>>(claimItemService.viewAllClaimByUserId(userid), HttpStatus.OK);
+    }
+
+
 
 }
